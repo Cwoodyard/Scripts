@@ -9,7 +9,7 @@ mkdir "$projName"
 cd "$projName"
 
 # Start downloading the link provided on execution
-yt-dlp.exe -vf "616+ba/620+ba/bv+ba/b" --write-subs --sub-lang en --write-auto-sub --convert-subs="srt" --cookies-from-browser firefox --no-check-certificate --add-metadata --convert-thumbnails jpg --ppa "ThumbnailsConvertor:-q:v 1" --embed-thumbnail -o "%(playlist_index)s - %(title)s.%(ext)s" -o "subtitle:%(title)s.%(ext)s" $1
+yt-dlp -vf "616+ba/620+ba/bv+ba/b" --write-subs --sub-lang en --write-auto-sub --convert-subs="srt" --cookies-from-browser firefox --no-check-certificate --add-metadata --convert-thumbnails jpg --ppa "ThumbnailsConvertor:-q:v 1" --embed-thumbnail -o "%(playlist_index)s - %(title)s.%(ext)s" -o "subtitle:%(title)s.%(ext)s" $1
 
 # Exit project dir and copy to the intake folder for manual review
 cd .. 
