@@ -18,8 +18,29 @@ while [[ "$#" -gt 0 ]]; do
     shift
 done
 
+missing=()
+for cmd in wget tar; do
+    if ! command -v "$cmd" &> /dev/null; then
+        missing+=("$cmd")
+    fi
+done
+
+if [ ${#missing[@]} -ne 0 ]; then
+    echo "The following required command(s) are missing: ${missing[*]}"
+    echo "Please install them before running this script."
+    exit 1
+fi
+
+# Back to our regularly scheduled code
+if [[ -z "$url" ]]; then
+    echo "What is the url to the video/playlist you would like me to download?" 
+    read url
+fi
+
+
 echo "Downloading the latest Discord Client"
     if [[ "$VERBOSE" == true ]]; then
+        echo "VERBOSE"
         wget -O discord.tar.gz "https://discord.com/api/download?platform=linux&format=tar.gz"
     else
         wget -q --show-progress -O discord.tar.gz "https://discord.com/api/download?platform=linux&format=tar.gz"
